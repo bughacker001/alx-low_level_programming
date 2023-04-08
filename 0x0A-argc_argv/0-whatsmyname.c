@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 /**
  * main - Print name of program
  * @argc: size of argv array and number of command line arguments
