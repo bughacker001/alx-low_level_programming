@@ -3,22 +3,46 @@
 #include <stdlib.h>
 
 /**
- * free_grid - function to allocate memory to grid
- *
- * @grid: int pointer
- *
+ * **alloc_grid - function to allocate memory to grid
+ * @width: int arg
  * @height: int arg
- *
  * Return: grid of 0s
  */
 
-void free_grid(int **grid, int height)
+int **alloc_grid(int width, int height)
 {
-	int i;
+	int col, row;
+	int **doublePtr;
 
-	for (i = 0; i < height; ++i)
+	if (width < 1 || height < 1)
 	{
-		free(grid[i]);
+		return (NULL);
 	}
-	free(grid);
+
+	doublePtr = malloc(height * sizeof(int *));
+
+	if (doublePtr == NULL)
+	{
+		return (NULL);
+	}
+
+	for (col = 0; col < height; col++)
+	{
+		doublePtr[col] = malloc(width * sizeof(int));
+
+		if (doublePtr[col] == NULL)
+		{
+			for (row = 0; row < col; row++)
+				free(doublePtr[row]);
+
+			free(doublePtr);
+			return (NULL);
+		}
+
+		for (row = 0; row < width; row++)
+		{
+			doublePtr[col][row] = 0;
+		}
+	}
+		return (doublePtr);
 }
