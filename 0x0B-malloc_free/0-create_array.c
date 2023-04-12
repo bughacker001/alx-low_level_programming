@@ -1,24 +1,39 @@
-#include "main.h"
 #include <stdlib.h>
+#include "main.h"
+
 /**
- * create_array - create array of si
- * @size: size of array
- * @c: char to assign
- * Description: create array of size
- * Return: pointer to array, NULL if
+ * create_array - Returns a pointer to a newly allocated space in memory.
+ * @size: unsigned int
+ * @c: char
+ * Return: char pointer
  */
+
 char *create_array(unsigned int size, char c)
 {
-	char *str;
-	unsigned int i;
-	str = malloc(sizeof(char) * size);
-	if (size == 0 || str == NULL)
-	{	
+	unsigned int counter;
+	char *character;
+
+	counter = 0;
+
+
+	if (size == 0)
+	{
 		return (NULL);
 	}
-	for (i = 0; i < size; i++)
-	{	
-		str[i] = c;
-		return (str);
+
+	character = malloc(sizeof(char) * size);
+
+	if (character == NULL)
+	{
+		return (NULL);
 	}
+	while (counter < size)
+	{
+		character[counter] = c;
+		counter++;
+	}
+
+	character[counter] = '\0';
+
+	return (character);
 }
