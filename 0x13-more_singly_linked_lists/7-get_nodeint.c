@@ -12,15 +12,24 @@ int pop_listint(listint_t **head)
     int data;
     listint_t *temp;
 
+    /* Check if the list is empty */
     if (*head == NULL) {
         return 0;
     }
 
+    /* Store the head node in a temporary variable */
     temp = *head;
-    *head = (*head)->next;
-    data = temp->n;
-    free(temp);
-    _putchar(data + '0');
 
+    /* Set the head of the list to the next node */
+    *head = (*head)->next;
+
+    /* Retrieve the data stored in the original head node */
+    data = temp->n;
+
+    /* Free the memory allocated for the original head node */
+    free(temp);
+
+    /* Return the data stored in the original head node */
     return data;
 }
+
